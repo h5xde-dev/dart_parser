@@ -41,22 +41,21 @@ class Parser1688 {
 
     try {
       var response = await dioRequest.get('/page/offerlist.htm?pageNum=$page');
-      products = await getDom(response.data, supplierId);
+      products = await getDom(response.data, supplierId, page);
     } on dio.DioError catch (error) {
       if (error.type == dio.DioErrorType.RESPONSE ||
           error.response == null ||
           error.response.statusCode == 302 ||
           error.response.statusCode == 301) {
         //sleep(Duration(seconds: 6));
-        await getSupplier(supplierId);
-        exit(0);
+        return await getSupplier(supplierId, page: page);
       }
     }
 
     return products;
   }
 
-  Future<List> getDom(String html, String supplierId) async {
+  Future<List> getDom(String html, String supplierId, int page) async {
     var products = [];
 
     var productsBlock = parse(html).getElementById('search-bar');
@@ -87,7 +86,7 @@ class Parser1688 {
         products.add(product);
       });
     } else {
-      products = await getSupplier(supplierId);
+      products = await getSupplier(supplierId, page: page);
     }
 
     return products;
