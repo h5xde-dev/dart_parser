@@ -7,7 +7,7 @@ void main(List<String> arguments) async {
 
   var server = await HttpServer.bind(
     InternetAddress.loopbackIPv4,
-    80,
+    8080,
   );
   print('Listening on localhost:${server.port}');
 
