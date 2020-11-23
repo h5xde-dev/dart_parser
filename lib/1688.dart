@@ -50,6 +50,10 @@ class Parser1688 {
         //sleep(Duration(seconds: 6));
         return await getSupplier(supplierId, page: page);
       }
+
+      if (error.response != null && error.response.statusCode == 404) {
+        return [];
+      }
     }
 
     return products;

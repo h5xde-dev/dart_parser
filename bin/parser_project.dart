@@ -9,7 +9,8 @@ void main(List<String> arguments) async {
     InternetAddress.loopbackIPv4,
     8080,
   );
-  print('Listening on localhost:${server.port}');
+
+  print('Listening on ${server.address}:${server.port}');
 
   await for (HttpRequest request in server) {
     print(request);
