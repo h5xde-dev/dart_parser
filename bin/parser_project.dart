@@ -12,6 +12,7 @@ void main(List<String> arguments) async {
   print('Listening on localhost:${server.port}');
 
   await for (HttpRequest request in server) {
+    print(request);
     await handleRequest(request);
   }
 

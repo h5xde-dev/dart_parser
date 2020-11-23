@@ -1,1 +1,1 @@
-web: ./dart-sdk/bin/dart bin/parser_project.dart
+web: ./dart-sdk/bin/dart run bin/parser_project.dart
